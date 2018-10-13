@@ -3,7 +3,7 @@ import _ from 'underscore';
 import moment from 'moment-timezone';
 
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
-import FakeConversationData from '../../stores/fake_conversation_data';
+import FakeConversationData from '../../stores/conversations';
 import ConversationSummary from './ConversationSummary';
 
 import { Message } from '../../types/Message';
