@@ -1,11 +1,11 @@
 import { DrawerNavigator } from 'react-navigation'
 
-import HomeComponent from './HomeComponent'
+import MatchContainer from './MatchContainer'
 
 const NavOptions = {
     initialRouteName: 'Home',
 };
 
 export default DrawerNavigator({
-    Home: { screen: HomeComponent }
+    Home: { screen: MatchContainer }
 }, NavOptions);

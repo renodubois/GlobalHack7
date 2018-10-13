@@ -8,7 +8,8 @@
   },
   "dependencies": {
     "react": "16.6.0-alpha.8af6728",
-    "react-native": "0.57.3"
+    "react-native": "0.57.3",
+    "react-native-tableview": "^2.4.0"
   },
   "devDependencies": {
     "@types/moment-timezone": "^0.5.9",
