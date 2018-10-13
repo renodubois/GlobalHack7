@@ -1,11 +1,15 @@
-import { DrawerNavigator } from 'react-navigation'
+import { DrawerNavigator, DrawerNavigatorConfig } from 'react-navigation';
 
-import HomeComponent from './HomeComponent'
+import HomeComponent from './HomeComponent';
+import MatchContainer from './MatchContainer';
+import RecordMatchMessage from './RecordMatchMessage';
 
-const NavOptions = {
+const NavOptions: DrawerNavigatorConfig = {
     initialRouteName: 'Home',
 };
 
 export default DrawerNavigator({
-    Home: { screen: HomeComponent }
+    Home: { screen: HomeComponent },
+    Matches: { screen: MatchContainer },
+    RecordMatchMessage: { screen: RecordMatchMessage }
 }, NavOptions);

@@ -1,21 +1,29 @@
 import * as React from 'react';
 import { Image, StyleSheet, Text, TouchableHighlight, View } from 'react-native';
+import { Match } from '../types/match';
+import { Navigation } from '../types/navigation';
 
-type Props = {
-	Name: string,
-	Distance: string,
-	ProfilePictureURL: string,
-	CoverPhotoURL: string,
-	UserID: string
+interface Props extends Match {
+	Active: boolean,
+	// TODO: Consider changing the return types of these functions to actual types
+	OnLike: (UserID: string, navigate: any) => any,
+	OnDislike: (UserID: string, navigate: any) => any,
+	[propName: string]: any
 };
-type State = {};
+interface State {};
 
 export default class MatchCard extends React.Component<Props, State> {
-	DoNothing = () => {
-		console.log("nice");
-	};
-	render = (): JSX.Element => {
-		const { CoverPhotoURL, Distance, Name, ProfilePictureURL, UserID } = this.props;
+	state: Partial<State> = {
+		Active: false
+	}
+	render = (): JSX.Element | null => {
+		const { Active } = this.props;
+		if (!Active) {
+			return null;
+		}
+		console.log(this.props.navigation)
+		const { navigate } = this.props.navigation;
+		const { CoverPhotoURL, Distance, Name, OnDislike, OnLike, ProfilePictureURL, UserID } = this.props;
 		return (
 			<View style={Styles.Card}>
 					<Image 
@@ -34,10 +42,10 @@ export default class MatchCard extends React.Component<Props, State> {
 					/>
 					<Text>{Name}</Text>
 					<Text>{Distance + " miles away"}</Text>
-					<TouchableHighlight onPress={this.DoNothing}>
+					<TouchableHighlight onPress={() => OnDislike(UserID, navigate)}>
 						<Text>Dislike</Text>
 					</TouchableHighlight>
-					<TouchableHighlight onPress={this.DoNothing}>
+					<TouchableHighlight onPress={() => OnLike(UserID, navigate)}>
 						<Text>Like</Text>
 					</TouchableHighlight>
 			</View>
