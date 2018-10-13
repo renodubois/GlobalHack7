@@ -18,6 +18,36 @@ export default [
         DateSent: "2018-02-24T10:21:23Z"
     },
     {
+        ConversationId: 1234,
+        MessageId: 34,
+        FromUserId: 1,
+        DateSent: "2018-02-24T10:21:23Z"
+    },
+    {
+        ConversationId: 1234,
+        MessageId: 664,
+        FromUserId: 2,
+        DateSent: "2018-02-24T10:21:23Z"
+    },
+    {
+        ConversationId: 1234,
+        MessageId: 221,
+        FromUserId: 2,
+        DateSent: "2018-02-24T10:21:23Z"
+    },
+    {
+        ConversationId: 1234,
+        MessageId: 453,
+        FromUserId: 1,
+        DateSent: "2018-02-24T10:21:23Z"
+    },
+    {
+        ConversationId: 1234,
+        MessageId: 4,
+        FromUserId: 2,
+        DateSent: "2018-02-24T10:21:23Z"
+    },
+    {
         ConversationId: 95043,
         MessageId: 34802,
         FromUserId: 3,
