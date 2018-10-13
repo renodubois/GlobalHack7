@@ -41,7 +41,7 @@ export default class Matches implements MatchStore {
 				Name: "John Doe",
 				Distance: "14.6",
 				ProfilePictureURL: "http://networthcelebrities.com/wp-content/uploads/2015/11/Bernie-Sanders_6.jpg",
-				CoverPhotoURL: "http://www.ishwarcenter.org/images/newsletters/american-flag.png",
+				CoverPhotoURL: "https://upload.wikimedia.org/wikipedia/commons/4/40/Italian_Risotto.png",
 				UserID: "1234"
 			},
 			{
