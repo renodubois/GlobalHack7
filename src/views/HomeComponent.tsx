@@ -1,10 +1,5 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- */
 import * as React from 'react';
-import { StyleSheet, View, Button, Text } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 
 type Props = {};
 export default class HomeComponent extends React.Component<Props> {
@@ -12,7 +7,7 @@ export default class HomeComponent extends React.Component<Props> {
 
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
+        <Text style={styles.welcome}>Welcome to React!</Text>
       </View>
     );
   }
