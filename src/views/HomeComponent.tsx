@@ -7,7 +7,7 @@ export default class HomeComponent extends React.Component<Props> {
 
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React!</Text>
+        <Text style={styles.welcome}>Welcome to Potluck!</Text>
       </View>
     );
   }
