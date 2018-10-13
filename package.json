@@ -7,7 +7,9 @@
     "android": "react-native run-android"
   },
   "dependencies": {
+    "expo": "^30.0.1",
     "react": "16.6.0-alpha.8af6728",
+    "react-icons": "^3.2.0",
     "react-native": "0.57.3",
     "react-native-tableview": "^2.4.0"
   },
@@ -32,5 +34,8 @@
   },
   "jest": {
     "preset": "react-native"
-  }
+  },
+  "assets": [
+    "assets/fonts"
+  ]
 }

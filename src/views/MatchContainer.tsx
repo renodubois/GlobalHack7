@@ -13,7 +13,6 @@ export default class MatchContainer extends React.Component<Props, State> {
 			ProfilePictureURL: "https://cdn.pixabay.com/photo/2015/09/09/22/04/woman-933684_960_720.jpg",
 			CoverPhotoURL: "https://upload.wikimedia.org/wikipedia/commons/4/40/Italian_Risotto.png",
 			UserID: "1234",
-			Languages: "English",
 			
 		};
 		return (
