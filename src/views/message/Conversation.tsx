@@ -40,7 +40,7 @@ export default class Conversation extends React.Component {
         const GroupedConversations = _.chain(ConversationData).filter((Message) => { return Message.ConversationId == ConversationId }).sortBy('DateSent').value();
 
         return (
-            <View>
+            <View style={styles.container}>
                 <FlatList
                     data={GroupedConversations}
                     renderItem={this.RenderMessage}
@@ -52,6 +52,9 @@ export default class Conversation extends React.Component {
 }
 
 const styles = StyleSheet.create({
+    container: {
+        backgroundColor: '#F5FCFF'
+    },
     fromMe: {
         flex: 1,
         backgroundColor: '#F5FCFF',
