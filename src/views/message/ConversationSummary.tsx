@@ -2,8 +2,9 @@ import React from 'react';
 import moment from 'moment-timezone';
 import _ from 'underscore';
 
-import {View, Text, StyleSheet, TouchableHighlight, Image} from 'react-native';
-import {Message} from '../../types/Message';
+import { View, Text, StyleSheet, TouchableHighlight, Image } from 'react-native';
+import { Message } from '../../types/Message';
+import Users from '../../stores/users';
 
 type Props = {
     Messages: Message[],
@@ -13,7 +14,7 @@ type Props = {
 
 export default class ConversationSummary extends React.Component<Props> {
     _onPressButton = () => {
-        this.props.navigation.navigate('Conversation', this.props);
+        this.props.navigation.navigate('Conversation', { ConversationId: this.props.ConversationId });
     }
 
     render(){
@@ -30,9 +31,8 @@ export default class ConversationSummary extends React.Component<Props> {
                 <View style={styles.container}>
                     <Image style={styles.picture} source={{ uri: 'https://www.lessannoyingcrm.com/i/team/58723.jpg' }} />
                     <View style={styles.thread}>
-                        <Text>{Message.FromUserId}</Text>
-                        <Text>{Message.Text}</Text>
-                        <Text>{moment.tz(Message.DateSent, 'UTC').format()}</Text>
+                        <Text style={styles.name}>{Users[Message.FromUserId].Name}</Text>
+                        <Text>{moment.tz(Message.DateSent, 'UTC').calendar()}</Text>
                     </View>
                 </View>
             </TouchableHighlight>
@@ -43,16 +43,19 @@ export default class ConversationSummary extends React.Component<Props> {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
         backgroundColor: '#F5FCFF',
-        margin: 15
+        margin: 15,
+        flexDirection: 'row'
     },
     picture: {
-        height: 50,
-        width: 50,
-        flex: 1
+        height: 75,
+        width: 75,
     },
     thread: {
-        flex: 1
+        marginLeft: 10,
+        marginTop: 15,
+    },
+    name: {
+        fontSize: 20
     }
 });
