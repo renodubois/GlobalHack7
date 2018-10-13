@@ -2,13 +2,15 @@ import * as React from 'react';
 import _ from 'underscore';
 import moment from 'moment-timezone';
 
-import { StyleSheet, Text, View } from 'react-native';
-import FakeConversationData from './fake_conversation_data';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import FakeConversationData from '../../stores/fake_conversation_data';
 import ConversationSummary from './ConversationSummary';
 
 import {Message} from '../../types/Message';
 
-type Props = {};
+type Props = {
+    navigation: any
+};
 export default class Inbox extends React.Component<Props> {    
     render() {
         if(_.size(FakeConversationData) == 0){
@@ -27,12 +29,22 @@ export default class Inbox extends React.Component<Props> {
         });
 
         const SortedData = _.sortBy(MostRecentConversations, (Message: Message) => { return Message.DateSent; }).reverse();
+        const {navigation} = this.props;
 
         return (
             <View style={styles.container}>
-                {_.map(SortedData, (Message: Message) => {
-                    return <ConversationSummary key={Message.ConversationId} Messages={GroupedData[Message.ConversationId]} ConversationId={Message.ConversationId} />;
-                })}                    
+                <ScrollView>
+                    {_.map(SortedData, (Message: Message) => {
+                        return (
+                            <ConversationSummary
+                                key={Message.ConversationId}
+                                Messages={GroupedData[Message.ConversationId]} 
+                                ConversationId={Message.ConversationId} 
+                                navigation={navigation}
+                            />
+                        );
+                    }, this)}
+                </ScrollView>                 
             </View>
         );
     }
