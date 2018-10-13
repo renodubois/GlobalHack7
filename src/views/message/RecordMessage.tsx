@@ -1,5 +1,5 @@
 import React from 'react';
-import { Alert, StyleSheet, TouchableHighlight, Text, View, Switch, Slider } from 'react-native';
+import { Alert, StyleSheet, TouchableHighlight, Text, View, Switch, Slider, Image } from 'react-native';
 import { Player, Recorder, MediaStates } from 'react-native-audio-toolkit';
 import Button from 'react-native-button';
 
@@ -166,6 +166,9 @@ export default class RecordMessage extends React.Component<Props> {
     }
 
     render() {
+
+        //I've commented this out because I want to keep this code for reference in implementing other features around the app -- RL
+
         // return (
         //     <View style={{flex: 1}}>
         //         <View>
@@ -206,9 +209,16 @@ export default class RecordMessage extends React.Component<Props> {
                     <Text style={styles.title}>Send a message to Jan!</Text>
                 </View>
                 <View>
-                    <Button style={styles.recordButton} onPress={() => this._toggleRecord()}>
-                        {this.state.recordButton}
+                    <Button
+                        containerStyle={styles.recordButton}
+                        onPress={() => this._toggleRecord()}
+                        style={{color: 'white'}}
+                    >
+                        <Image source={this.recorder && this.recorder.isRecording ? require('../../baseline_stop_white_24.png') : require('../../baseline_mic_none_white_24.png')} />
                     </Button>
+                </View>
+                <View style={styles.recordingSound}>
+                    <Text>HODOR</Text>
                 </View>
             </View>
         );
@@ -258,5 +268,25 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         marginTop: 200
+    },
+    recordButton: {
+        borderRadius: 50,
+        height: 100,
+        width: 100,
+        backgroundColor: '#e74c3c',
+        paddingTop: 5,
+        paddingLeft: 2
+    },
+    recordingSound: {
+        borderRadius: 10,
+        borderColor: 'black',
+        borderWidth: 1,
+        //paddingLeft: 50,
+        //paddingRight: 50,
+        //paddingTop: 20,
+        paddingBottom: 20,
+        width: '75%',
+        textAlign: 'center',
+        marginTop: 30
     }
 });
