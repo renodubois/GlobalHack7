@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button, Image, StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, TouchableHighlight, View } from 'react-native';
 
 type Props = {
 	Name: string,
@@ -12,9 +12,8 @@ type State = {};
 
 export default class MatchCard extends React.Component<Props, State> {
 	DoNothing = () => {
-		return false;
-	}
-
+		console.log("nice");
+	};
 	render = (): JSX.Element => {
 		const { CoverPhotoURL, Distance, Name, ProfilePictureURL, UserID } = this.props;
 		return (
@@ -35,8 +34,12 @@ export default class MatchCard extends React.Component<Props, State> {
 					/>
 					<Text>{Name}</Text>
 					<Text>{Distance + " miles away"}</Text>
-					{/* <Button accessibilityLabel={"Dislike"} title={"Dislike"} onPress={(e) => console.log("nice")} />
-					<Button accessibilityLabel={"Like"} title={"Like"} onPress={(e) => console.log("nice")} /> */}
+					<TouchableHighlight onPress={this.DoNothing}>
+						<Text>Dislike</Text>
+					</TouchableHighlight>
+					<TouchableHighlight onPress={this.DoNothing}>
+						<Text>Like</Text>
+					</TouchableHighlight>
 			</View>
 		);
 	}
