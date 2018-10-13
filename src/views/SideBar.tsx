@@ -1,3 +1,7 @@
+/**
+ * TODO:
+ * Style this... it's ugly right now (sorry)
+ */
 import React from 'react';
 import _ from 'underscore';
 import { Text, View, TouchableHighlight, StyleSheet } from 'react-native';
