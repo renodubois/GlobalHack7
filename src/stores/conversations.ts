@@ -12,6 +12,12 @@ export default [
         DateSent: "2018-02-23T11:38:53Z",
     },
     {
+        ConversationId: 1234,
+        MessageId: 34892,
+        FromUserId: 1,
+        DateSent: "2018-02-24T10:21:23Z"
+    },
+    {
         ConversationId: 95043,
         MessageId: 34802,
         FromUserId: 3,
