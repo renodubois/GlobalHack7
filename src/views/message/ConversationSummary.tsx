@@ -29,7 +29,7 @@ export default class ConversationSummary extends React.Component<Props> {
         return (
             <TouchableHighlight onPress={this._onPressButton}>
                 <View style={styles.container}>
-                    <Image style={styles.picture} source={{ uri: 'https://www.lessannoyingcrm.com/i/team/58723.jpg' }} />
+                    <Image style={styles.picture} source={{ uri: Users[Message.FromUserId].Picture }} />
                     <View style={styles.thread}>
                         <Text style={styles.name}>{Users[Message.FromUserId].Name}</Text>
                         <Text>{moment.tz(Message.DateSent, 'UTC').calendar()}</Text>
