@@ -1,4 +1,4 @@
-import { observable } from 'mobx';
+//import { observable } from 'mobx';
 import { Match } from '../types/match';
 
 export interface MatchStore {
@@ -11,8 +11,8 @@ export interface MatchStore {
 }
 
 export default class Matches implements MatchStore {
-	@observable HasConnection = false;
-	@observable Matches: Match[] = [];
+	// @observable HasConnection = false;
+	// @observable Matches: Match[] = [];
 
 	constructor () {
 		this.InitStore();

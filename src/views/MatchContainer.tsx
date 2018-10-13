@@ -1,4 +1,4 @@
-import { inject, observer } from 'mobx-react';
+//import { inject, observer } from 'mobx-react';
 import * as React from 'react';
 import { Text, View } from 'react-native';
 import { NavigationScreenProp } from 'react-navigation';
@@ -14,8 +14,8 @@ type Props = {
 	navigation: NavigationScreenProp<{}, NavigationProps>
 };
 type State = {};
-@inject('MatchStore')
-@observer
+// @inject('MatchStore')
+// @observer
 export default class MatchContainer extends React.Component<Props, State> {
 	// TODO: Figure out how to type the navigation function
 	OnMatchLike = (UserID: string, navigate: any) => {

@@ -1,4 +1,4 @@
-import { inject } from 'mobx-react';
+//import { inject } from 'mobx-react';
 import * as React from 'react';
 import { StyleSheet, Text, TouchableHighlight, View } from 'react-native';
 import { NavigationScreenProp } from 'react-navigation';
@@ -13,7 +13,7 @@ interface Props {
 };
 interface State {};
 
-@inject('MatchStore')
+//@inject('MatchStore')
 export default class RecordMatchMessage extends React.Component<Props, State> {
 	SendLike = () => {
 		const UserID = this.props.navigation.getParam("UserID", "");
