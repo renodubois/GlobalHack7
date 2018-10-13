@@ -3,5 +3,4 @@ export type Message = {
     MessageId: number,
     FromUserId: number,
     DateSent: string,
-    Text: string
 };
