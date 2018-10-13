@@ -6,7 +6,7 @@ import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import FakeConversationData from '../../stores/fake_conversation_data';
 import ConversationSummary from './ConversationSummary';
 
-import {Message} from '../../types/Message';
+import { Message } from '../../types/Message';
 
 type Props = {
     navigation: any
@@ -53,8 +53,6 @@ export default class Inbox extends React.Component<Props> {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
         backgroundColor: '#F5FCFF',
     },
     welcome: {
