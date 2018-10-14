@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
     MessageToMe: {
         backgroundColor: '#F3F3F3',
         width: 250,
-        height: 40,
+        height: 45,
         borderRadius: 9,
         color: '#000',
         lineHeight: 28,
