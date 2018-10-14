@@ -211,7 +211,7 @@ const styles = StyleSheet.create({
     },
     RecordMessageButton: {
         backgroundColor: '#FFFFFF',
-        borderColor: '#AA2828',
+        borderColor: '#AA282840',
         borderRadius: 36/2,
         borderWidth: 3,
         width: 217,
