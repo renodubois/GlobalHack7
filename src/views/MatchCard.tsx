@@ -155,6 +155,7 @@ const Styles = StyleSheet.create({
 		color: "#fff",
 		textAlign: "center",
 		lineHeight: 73,
+		// alignItems: "center",
 	},
 	ThumbsUpButton: {
 		flexDirection: "row",
@@ -167,5 +168,6 @@ const Styles = StyleSheet.create({
 		color: "#fff",
 		textAlign: "center",
 		lineHeight: 73,
+		// alignItems: "center",
 	},
 });
