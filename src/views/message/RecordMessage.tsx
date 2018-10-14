@@ -1,11 +1,14 @@
 import React from 'react';
+const RNFS = require('react-native-fs');
+
 import { Alert, StyleSheet, TouchableHighlight, Text, View, Switch, Slider, Image } from 'react-native';
 import { Player, Recorder, MediaStates } from 'react-native-audio-toolkit';
 import Button from 'react-native-button';
 
 type Props = {};
 
-let filename = 'test.mp4';
+let filename = 'recording';
+const ApiEndpoint = 'https://api.lacathon.com/api_endpoint.php?Function=TestS3';
 
 export default class RecordMessage extends React.Component<Props> {
     constructor(props: any) {
@@ -24,6 +27,10 @@ export default class RecordMessage extends React.Component<Props> {
 
             error: null
         };
+
+        this.currentFile = filename
+        this.count = 0
+        this.previousFile = ''
     }
 
     componentWillMount() {
@@ -98,7 +105,7 @@ export default class RecordMessage extends React.Component<Props> {
 
         this.player = new Player(filename, {
             autoDestroy: false
-        }).prepare((err) => {
+        }).prepare((err, fsPath) => {
             if (err) {
                 console.log('error at _reloadPlayer():');
                 console.log(err);
@@ -119,12 +126,15 @@ export default class RecordMessage extends React.Component<Props> {
         });
     }
 
-    _reloadRecorder() {
+    _reloadRecorder = () => {
         if (this.recorder) {
             this.recorder.destroy();
         }
 
-        this.recorder = new Recorder(filename, {
+        this.currentFile = filename + "_" + this.count;
+        this.count++;
+
+        this.recorder = new Recorder(this.currentFile + ".mp4", {
             bitrate: 256000,
             channels: 2,
             sampleRate: 44100,
@@ -136,7 +146,7 @@ export default class RecordMessage extends React.Component<Props> {
         this._updateState();
     }
 
-    _toggleRecord() {
+    _toggleRecord = () => {
         if (this.player) {
             this.player.destroy();
         }
@@ -151,9 +161,9 @@ export default class RecordMessage extends React.Component<Props> {
                 this._reloadPlayer();
                 this._reloadRecorder();
             }
-
             this._updateState();
-        });
+        });        
+        this.previousFile = this.currentFile;
     }
 
     _toggleLooping(value) {
@@ -163,6 +173,34 @@ export default class RecordMessage extends React.Component<Props> {
         if (this.player) {
             this.player.looping = value;
         }
+    }
+
+    SubmitFile = () => {
+        const files = [
+            {
+                name: this.previousFile,
+                filename: this.previousFile+'.mp4',
+                filepath: RNFS.DocumentDirectoryPath + '/' + this.previousFile + '.mp4',
+                filetype: 'audio/mp4'
+            }
+        ];
+
+        RNFS.uploadFiles({
+            toUrl: ApiEndpoint,
+            files: files,
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json'
+            }
+        }).promise.then((response) => {
+            if(response.statusCode == 200){
+                //Alert.alert("FILES UPLOADED");
+                this.props.navigation.navigate('Home');
+            } else {
+                Alert.alert("There was an error on the server! Please try again");
+            }
+        }).catch((err) => {
+        });
     }
 
     render() {
@@ -216,6 +254,9 @@ export default class RecordMessage extends React.Component<Props> {
                     >
                         <Image source={this.recorder && this.recorder.isRecording ? require('../../baseline_stop_white_24.png') : require('../../baseline_mic_none_white_24.png')} />
                     </Button>
+                </View>
+                <View>
+                    <TouchableHighlight onPress={this.SubmitFile}><Text>Send file</Text></TouchableHighlight>
                 </View>
                 <View style={styles.recordingSound}>
                     <Text>HODOR</Text>
