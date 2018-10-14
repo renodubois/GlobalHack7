@@ -5,9 +5,10 @@ import Inbox from './message/Inbox';
 import Conversation from './message/Conversation';
 import SideBar from './SideBar';
 import RecordMessage from './message/RecordMessage';
+import MessageSent from './message/MessageSent';
 
 const NavOptions = {
-    initialRouteName: 'Record',
+    initialRouteName: 'Home',
     contentComponent: SideBar
 };
 
@@ -17,5 +18,6 @@ export default DrawerNavigator({
     'History': { screen: Inbox },
     'Conversation': { screen: Conversation },
     'SideBar': { screen: SideBar },
-    'Record' : { screen: RecordMessage }
+    'Record' : { screen: RecordMessage },
+    'Confirmation' : { screen: MessageSent }
 }, NavOptions);
