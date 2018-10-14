@@ -8,7 +8,7 @@ import Button from 'react-native-button';
 type Props = {};
 
 let filename = 'recording';
-const ApiEndpoint = 'https://api.lacathon.com/api_endpoint.php?Function=TestS3';
+const ApiEndpoint = 'https://api.lacathon.com/api_endpoint.php?Function=SendVoiceMessage&UserId=1&Parameters={MatchId:123}';
 
 export default class RecordMessage extends React.Component<Props> {
     constructor(props: any) {
@@ -158,6 +158,7 @@ export default class RecordMessage extends React.Component<Props> {
                 });
             }
             if (stopped) {
+                this.SubmitFile();
                 this._reloadPlayer();
                 this._reloadRecorder();
             }
@@ -191,15 +192,15 @@ export default class RecordMessage extends React.Component<Props> {
             method: 'POST',
             headers: {
                 'Accept': 'application/json'
-            }
+            },
         }).promise.then((response) => {
             if(response.statusCode == 200){
-                //Alert.alert("FILES UPLOADED");
-                this.props.navigation.navigate('Home');
+                this.props.navigation.navigate('Confirmation');
             } else {
                 Alert.alert("There was an error on the server! Please try again");
             }
         }).catch((err) => {
+            Alert.alert("There was an error! Please try again.");
         });
     }
 
@@ -244,9 +245,9 @@ export default class RecordMessage extends React.Component<Props> {
         return (
             <View style={styles.pageContainer}>
                 <View>
-                    <Text style={styles.title}>Send a message to Jan!</Text>
+                    <Text style={styles.title}>Say hi to Jan</Text>
                 </View>
-                <View>
+                <View style={styles.buttonWrapper}>
                     <Button
                         containerStyle={styles.recordButton}
                         onPress={() => this._toggleRecord()}
@@ -255,11 +256,11 @@ export default class RecordMessage extends React.Component<Props> {
                         <Image source={this.recorder && this.recorder.isRecording ? require('../../baseline_stop_white_24.png') : require('../../baseline_mic_none_white_24.png')} />
                     </Button>
                 </View>
-                <View>
-                    <TouchableHighlight onPress={this.SubmitFile}><Text>Send file</Text></TouchableHighlight>
-                </View>
-                <View style={styles.recordingSound}>
-                    <Text>HODOR</Text>
+                <View style={styles.recordingSound} />
+                <View style={{marginTop: 70, textAlign: 'center', justifyContent: 'center', alignItems: 'center', marginBottom: 20}}>
+                    <Text style={{color: "#D78B47", fontSize: 24, lineHeight: 29, fontFamily: 'Lato'}}>Need some help?</Text>
+                    <Text style={styles.subText}>"I would love to share a meal with you!"</Text>
+                    <Text style={styles.subText}>"I hope to get to know you better!"</Text>
                 </View>
             </View>
         );
@@ -267,67 +268,69 @@ export default class RecordMessage extends React.Component<Props> {
 }
 
 const styles = StyleSheet.create({
-    button: {
-        padding: 20,
-        fontSize: 20,
-        backgroundColor: 'white',
-    },
-    slider: {
-        height: 10,
-        margin: 10,
-    },
-    buttonContainer: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-    },
-    settingsContainer: {
-        flex: 1,
-        justifyContent: 'space-between',
-        alignItems: 'center',
-    },
-    container: {
-        borderRadius: 4,
-        borderWidth: 0.5,
-        borderColor: '#d6d7da',
-        marginBottom: 50
-    },
+    // button: {
+    //     padding: 20,
+    //     fontSize: 20,
+    //     backgroundColor: 'white',
+    // },
+    // slider: {
+    //     height: 10,
+    //     margin: 10,
+    // },
+    // buttonContainer: {
+    //     flex: 1,
+    //     flexDirection: 'row',
+    //     justifyContent: 'space-between',
+    //     alignItems: 'center',
+    // },
+    // settingsContainer: {
+    //     flex: 1,
+    //     justifyContent: 'space-between',
+    //     alignItems: 'center',
+    // },
     title: {
-        fontSize: 19,
-        fontWeight: 'bold',
+        fontSize: 35,
         textAlign: 'center',
-        padding: 20,
-    },
-    errorMessage: {
-        fontSize: 15,
-        textAlign: 'center',
-        padding: 10,
-        color: 'red'
+        lineHeight: 42,
+        fontFamily: 'Lato'
     },
     pageContainer: {
         flex: 1,
         alignItems: 'center',
-        marginTop: 200
+        marginTop: 110
+    },
+    buttonWrapper: { 
+        borderWidth: 1, 
+        borderColor: '#333', 
+        borderRadius: 100, 
+        padding: 10, 
+        marginTop: 25 
     },
     recordButton: {
-        borderRadius: 50,
-        height: 100,
-        width: 100,
-        backgroundColor: '#e74c3c',
-        paddingTop: 5,
-        paddingLeft: 2
+        borderRadius: 75,
+        height: 110,
+        width: 110,
+        backgroundColor: '#AA2828',
+        //marginTop: 35,
+        paddingTop: 10,
+        paddingLeft: 7
     },
     recordingSound: {
         borderRadius: 10,
         borderColor: 'black',
         borderWidth: 1,
-        //paddingLeft: 50,
-        //paddingRight: 50,
-        //paddingTop: 20,
         paddingBottom: 20,
-        width: '75%',
+        width: 295,
         textAlign: 'center',
-        marginTop: 30
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 36,
+        height: 92
+    },
+    subText: {
+        lineHeight: 29,
+        fontFamily: 'Lato',
+        fontSize: 16,
+        color: "#555"
     }
 });
